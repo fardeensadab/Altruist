@@ -1,0 +1,137 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(51, 51, 51, 0.6);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+nav h1 {
+    margin: 0;
+}
+
+.menu {
+    display: flex; /* Use flexbox for the buttons */
+    gap: 20px; /* Space between buttons */
+    align-items: center; /* Align items vertically in the center */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px; /* Padding for button-like appearance */
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Background change on hover */
+    border-radius: 8px;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 3px 0;
+}
+
+/* Search button styles */
+.search-button {
+    background-color: rgba(51, 51, 51, 0.6); /* Button background */
+    color: #fff; /* Text color */
+    border: none; /* No border */
+    padding: 10px; /* Padding for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, width 0.3s; /* Transition for background and width */
+}
+
+/* Expand button on active */
+.search-button.active {
+    background-color: #666; /* Darker background when active */
+}
+
+/* Search input styles */
+.search-input {
+    padding: 10px; /* Padding for input */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    margin-left: 10px; /* Space between button and input */
+    width: 200px; /* Default width for input */
+    transition: width 0.3s; /* Smooth transition for width */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .menu {
+        display: none; /* Hide the links by default on smaller screens */
+        flex-direction: column; /* Stack items vertically */
+        position: absolute; /* Position below the navbar */
+        top: 60px; /* Adjust based on the height of the navbar */
+        left: 0;
+        right: 0;
+        background-color: rgba(51, 51, 51, 0.6); /* Background color for the menu */
+        padding: 10px 0; /* Add padding to the top and bottom of the menu */
+    }
+
+    .menu.show {
+        display: flex; /* Show the links when toggled */
+    }
+
+    .hamburger {
+        display: flex; /* Show hamburger icon on smaller screens */
+    }
+
+    .dropdown-menu {
+        display: none; /* Hide dropdown by default */
+        background-color: transparent; /* Remove background color from dropdown */
+        position: absolute; /* Position dropdown below the "See More" button */
+        left: 0;
+        width: 100%;
+    }
+
+    /* Dropdown item styles */
+    .dropdown-menu a {
+        display: block; /* Make links block elements */
+        padding: 10px; /* Add padding to each option */
+        color: #fff; /* Text color */
+        text-decoration: none; /* Remove underline */
+        background-color: #444; /* Background color for each option */
+        margin: 5px 0; /* Space between items */
+        transition: background-color 0.3s; /* Transition for hover effect */
+        border-radius: 5px; /* Rounded corners for the boxes */
+    }
+
+    /* Add border for each option */
+    .dropdown-menu a {
+        border: 1px solid transparent; /* Add transparent border */
+    }
+
+    /* Border and hover effects */
+    .dropdown-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Background change on hover */
+        border: 1px solid #fff; /* Add border on hover for separation */
+    }
+
+    /* Adjust search input width on smaller screens */
+    .search-input {
+        width: 150px; /* Adjusted width for smaller screens */
+    }
+}
+
+body {
+    margin-top: 60px; /* Adjust this value based on the height of your navbar */
+}
