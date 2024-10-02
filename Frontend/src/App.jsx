@@ -1,8 +1,12 @@
 import { LoginForm } from "./Components/LoginForm/LoginForm";
+import { TopBar } from "./Components/TopBar";
 import "./index.css";
 
 function App() {
-  return <LoginForm />;
+  return <>
+  <TopBar />
+  <LoginForm />;
+  </>
 }
 
 export default App;
