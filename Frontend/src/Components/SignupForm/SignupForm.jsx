@@ -1,7 +1,6 @@
 import React from "react";
 import "./SignupForm.css";
-import { FaEnvelope, FaRegUser } from "react-icons/fa";
-import { FaLock } from "react-icons/fa";
+import { FaEnvelope, FaRegUser, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export const SignupForm = () => {

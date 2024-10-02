@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
-import { FaRegUser } from "react-icons/fa";
-import { FaLock } from "react-icons/fa";
-import { SignupForm } from "../SignupForm/SignupForm";
+import { FaRegUser, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export const LoginForm = () => {
