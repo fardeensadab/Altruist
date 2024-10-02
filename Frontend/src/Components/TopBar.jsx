@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {FaSearch } from 'react-icons/fa'; // Importing specific icons
+
 import './TopBar.css'; // Import the CSS file
 
 export function TopBar() {
@@ -35,16 +37,16 @@ export function TopBar() {
                 <div className="dropdown">
                     <a href="#" onClick={toggleSeeMore}>See More</a>
                     {seeMoreOpen && (
-                        <div className="dropdown-menu">
-                            <a href="/services">Services</a>
-                            <a href="/portfolio">Portfolio</a>
-                            <a href="/blog">Blog</a>
-                        </div>
+                        <ul className="dropdown-menu">
+                            <li><a href="/services">Services</a></li>
+                            <li><a href="/portfolio">Portfolio</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                        </ul>
                     )}
                 </div>
             </div>
             <button className={`search-button ${searchOpen ? 'active' : ''}`} onClick={toggleSearch}>
-                {searchOpen ? 'Close' : 'Search'}
+                {searchOpen ? 'Close' :  <FaSearch /> }
             </button>
             {searchOpen && <input type="text" className="search-input" placeholder="Search..." />}
         </nav>

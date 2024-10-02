@@ -80,7 +80,7 @@ nav a:hover {
         display: none; /* Hide the links by default on smaller screens */
         flex-direction: column; /* Stack items vertically */
         position: absolute; /* Position below the navbar */
-        top: 60px; /* Adjust based on the height of the navbar */
+        top: 57px; /* Adjust based on the height of the navbar */
         left: 0;
         right: 0;
         background-color: rgba(51, 51, 51, 0.6); /* Background color for the menu */
