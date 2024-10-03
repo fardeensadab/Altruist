@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-import {FaSearch } from 'react-icons/fa'; // Importing specific icons
-
-import './TopBar.css'; // Import the CSS file
+import { FaSearch } from 'react-icons/fa';
+import './TopBar.css';
 
 export function TopBar() {
-    const [menuOpen, setMenuOpen] = useState(false); // State to manage the menu toggle
-    const [seeMoreOpen, setSeeMoreOpen] = useState(false); // State to manage "See More" dropdown
-    const [searchOpen, setSearchOpen] = useState(false); // State to manage search bar toggle
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [seeMoreOpen, setSeeMoreOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
 
     const toggleMenu = () => {
-        setMenuOpen(!menuOpen); // Toggle the main menu
+        setMenuOpen(!menuOpen);
     };
 
     const toggleSeeMore = () => {
-        setSeeMoreOpen(!seeMoreOpen); // Toggle the "See More" dropdown
+        setSeeMoreOpen(!seeMoreOpen);
     };
 
     const toggleSearch = () => {
-        setSearchOpen(!searchOpen); // Toggle the search bar
+        setSearchOpen(!searchOpen);
     };
 
     return (
