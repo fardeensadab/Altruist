@@ -80,10 +80,22 @@
   margin: 20px 0 15px;
 }
 
+.register-link button {
+  margin-top: 10px; 
+}
+
+.button-container {
+  display: flex; 
+  gap: 10px; 
+}
+
+
 .register-link p a {
   color: white;
   text-decoration: none;
   font-weight: 600;
+  display: flex; 
+  align-items: center;
 }
 
 .register-link p a:hover {
