@@ -1,51 +1,92 @@
 const nodemailer = require('nodemailer');
-//const Mailgen = require('mailgen');
+const crypto = require('crypto');
+
+// to store the code in memory
+const verificationCodes = new Map();
 
 
+const generateSecureVerificationCode = () => {
+    return crypto.randomInt(100000, 999999); //besi secure code hmmm
+};
 
-const signup = async(req, res) => {
 
-    // for now using testing account
-    // real mail pore dekha jabe
-        let testAccount=await nodemailer.createTestAccount();
-    
+const signup = async (req, res) => {
+    try {
+        const { email } = req.body; 
+
+        
+        const verificationCode = generateSecureVerificationCode();
+
+        
+        verificationCodes.set(email, verificationCode);
+
+        setTimeout(() => {
+            verificationCodes.delete(email); 
+            console.log(`Verification code for ${email} expired.`);
+        }, 1200000); // 20 minutes brother
+
+        // right now its test account kosto
+        let testAccount = await nodemailer.createTestAccount();
+
+        
         let transporter = nodemailer.createTransport({
             host: "smtp.ethereal.email",
             port: 587,
-            secure: false, // true for 465, false for other ports
+            secure: false, // Use true for 465 (SSL), false for other ports
             auth: {
-                user: testAccount.user, // generated ethereal user
-                pass: testAccount.pass, // generated ethereal password
+                user: testAccount.user, 
+                pass: testAccount.pass, 
             },
         });
-    
-        let message = {
-            from: '"Fred Foo 👻" <foo@example.com>', // sender address
-            to: "bar@example.com, baz@example.com", // list of receivers
-            subject: "Thanks for registering", // Subject line
-            text: "Successfully Register with us.", // plain text body
-            html: "<b>Successfully Register with us.</b> <br> Hope you have a good time with us", // html body
-          }
 
-          transporter.sendMail(message).then((info) => {
-            return res.status(201)
-            .json({ 
-                msg: "you should receive an email",
-                info : info.messageId,
-                preview: nodemailer.getTestMessageUrl(info)
-            })
-        }).catch(error => {
-            return res.status(500).json({ error })
-        })
+        // Define the email message
+        let message = {
+            from: '"Fred Foo 👻" <foo@example.com>', // Sender address
+            to: "nirjon6482@gmail.com", // Send to the user's email
+            subject: "Email Verification", // Subject line
+            text: `Your verification code is: ${verificationCode}`, // Plain text body
+            html: `<b>Your verification code is: ${verificationCode}</b> <br> Please use this code to verify your account.`, // HTML body
+        };
+
+        // Send the email
+        let info = await transporter.sendMail(message);
+
+        // Respond with a success message
+        return res.status(201).json({
+            msg: "Verification email sent",
+            info: info.messageId,
+            preview: nodemailer.getTestMessageUrl(info)
+             // URL for previewing the email in Ethereal
+        });
+    } catch (error) {
+        console.error("Error sending email:", error); 
+        return res.status(500).json({ error: error.message }); 
+    }
+};
+
+
+const verify = (req, res) => {
+    const { email, code } = req.body; 
+
     
-        // res.status(201).json("Signup Successfully...!");
+    const storedCode = verificationCodes.get(email);
+
+    if (!storedCode) {
+        return res.status(400).json({ msg: "No verification code found for this email or it has expired" });
     }
 
-const getbill = (req, res) => {
-    res.status(201).json("bill has been sent");
-}
+   
+    if (parseInt(code) === storedCode) {
+        
+        verificationCodes.delete(email);
+        return res.status(200).json({ msg: "Email verified successfully" });
+    } else {
+        return res.status(400).json({ msg: "Invalid verification code" });
+    }
+};
+
 
 module.exports = {
     signup,
-    getbill
-}
+    verify
+};
