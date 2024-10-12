@@ -2,7 +2,7 @@ import React from "react";
 import "./SignUp_NGO.css"; 
 import { FaRegUser, FaLock, FaEnvelope } from "react-icons/fa";
 
-const SignUp_NGO = ({ onSwitch }) => {
+export const SignUp_NGO = ({ onSwitch }) => {
   return (
     <div className="wrapper">
       <form action="">
@@ -52,5 +52,3 @@ const SignUp_NGO = ({ onSwitch }) => {
     </div>
   );
 };
-
-export default SignUp_NGO;

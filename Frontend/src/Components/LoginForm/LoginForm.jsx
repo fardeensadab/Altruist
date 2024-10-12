@@ -24,7 +24,7 @@ export const LoginForm = ({ onSwitch }) => {
         </div>
         <button type="submit">Login</button>
         <div className="register-link">
-          <p>
+          <div>
             Don't Have an Account?{" "}
             <div className="button-container">
               <button onClick={onSwitch} style={{ marginRight: "10px" }}>
@@ -34,7 +34,7 @@ export const LoginForm = ({ onSwitch }) => {
                 Volunteer Sign Up
               </button>
             </div>
-          </p>
+          </div>
         </div>
       </form>
     </div>

@@ -1,33 +1,43 @@
 import React, { useState } from "react";
-import { LoginForm } from "./Components/LoginForm/LoginForm";
 import { TopBar } from "./Components/TopBar";
-import SignUp_NGO from "./Components/SignUp/SignUp_NGO";
+import LoginAndRegForms from "./Components/LoginAndRegForms";
+import EmailVerifier from "./Components/EmailVerifier";
 
 import AboutUs from "./Components/Miscellaneous/AboutUs";
 import FAQ from "./Components/Miscellaneous/FAQ";
 
 import "./index.css";
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, BrowserRouter, Link } from "react-router-dom";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
 
-  const Forms = () => {
-    return <>
-
-      {isLogin ? (
-        <LoginForm onSwitch={() => setIsLogin(false)} />
-      ) : (
-        <SignUp_NGO onSwitch={() => setIsLogin(true)} />
-      )}
-    </>
+  const Home = () => {
+    return <div class="container">
+      <h1> The following Routes are available currently:</h1>
+      <ol>
+        <li>
+          <Link to="/login"> Login </Link>
+        </li>
+        <li>
+          <Link to="/verify-registration"> Email-verification </Link>
+        </li>
+        <li>
+          <Link to="/about"> About Us </Link>
+        </li>
+        <li>
+          <Link to="/faq"> FAQ </Link>
+        </li>
+      </ol>
+    </div>
   }
 
   return (
     <BrowserRouter>
       <TopBar />
       <Routes>
-        <Route path="/login" element={<Forms />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginAndRegForms />} />
+        <Route path="/verify-registration" element={<EmailVerifier />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/faq" element={<FAQ />} />
       </Routes>
