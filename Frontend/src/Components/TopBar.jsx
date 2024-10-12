@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 import './TopBar.css';
 
 export function TopBar() {
@@ -28,8 +29,8 @@ export function TopBar() {
                 <div className="bar"></div>
             </div>
             <div className={menuOpen ? 'menu show' : 'menu'}>
-                <a href="/about">About Us</a>
-                <a href="/faq">FAQ</a>
+                <Link to="/about">About Us</Link>
+                <Link to="/faq">FAQ</Link>
                 <a href="/contact">Contact Us</a>
                 <a href="/donate">Donate</a>
                 <a href="/login">Login</a>

@@ -1,0 +1,16 @@
+.container{
+    max-width: 800px;
+    padding: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.942);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: justify;
+}
+.container p{
+    text-align-last: center;
+}
+.container summary {
+    margin: 5px;
+    cursor: pointer;
+    color: skyblue;
+}
