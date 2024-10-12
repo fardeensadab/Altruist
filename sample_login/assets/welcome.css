@@ -10,6 +10,7 @@ body {
     background: linear-gradient(135deg, #00BCD4, #009688);
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #fff;
@@ -22,6 +23,57 @@ h1 {
     letter-spacing: 2px;
     text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
     animation: fadeIn 2s ease-in-out;
+    margin-bottom: 20px; /* Added margin for spacing */
+}
+
+form {
+    margin-top: 20px;
+    width: 100%; /* Make form take full width */
+    max-width: 400px; /* Limit max width for better alignment */
+    padding: 20px; /* Add padding */
+    background-color: rgba(255, 255, 255, 0.1); /* Background for the form */
+    border-radius: 8px; /* Rounded corners for the form */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Add shadow */
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 2px solid #fff;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #004D40;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00796B;
 }
 
 @keyframes fadeIn {
@@ -40,4 +92,33 @@ h1 {
     h1 {
         font-size: 36px;
     }
+
+    form {
+        width: 90%; /* Adjust form width for smaller screens */
+    }
+    
+    button {
+        width: 100%; /* Make button full-width on small screens */
+    }
+}
+
+/* Add this CSS to welcome.css */
+
+/* Image container styles */
+.image-container {
+    width: 200px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    overflow: hidden; /* Hide overflow */
+    border: 2px solid #fff; /* Optional: border around the box */
+    display: flex; /* Center the image */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: background color */
+    margin-bottom: 20px; /* Space between the image and the form */
+}
+
+.image-container img {
+    max-width: 100%; /* Ensure the image fits within the container */
+    max-height: 100%; /* Ensure the image fits within the container */
+    object-fit: cover; /* Crop the image to cover the box */
 }
