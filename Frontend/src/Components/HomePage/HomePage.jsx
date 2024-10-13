@@ -31,7 +31,7 @@ function DonationRequests() {
 
             </p>
             <p><strong>Deadline:</strong> {post.deadline}</p>
-            <p><strong>Contact Info:</strong> {post.contact_info.email}, {post.contact_info.phone}</p>
+            <p><strong>Contact Info:</strong> {post.contact_info.email && <a href={`mailto:${post.contact_info.email}`}>{post.contact_info.email}</a>}, {post.contact_info.phone && <a href={`tel:${post.contact_info.phone}`}>{post.contact_info.phone}</a>}</p>
           </li>
         ))}
       </ul>
