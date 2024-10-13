@@ -50,6 +50,8 @@ router.post("/signup", encoder, async function (req, res) {
     }
     catch (err) {
         res.status(400).json({ error: "Nothing sent" });
+        console.log(err)
+
         return
     }
 
@@ -58,12 +60,15 @@ router.post("/signup", encoder, async function (req, res) {
     connection.query("SELECT * FROM testusers WHERE user_email = ?", [useremail], function (error, results, fields) {
         if (results.length > 0) {
             // User already exists
-            res.json({error: "User already exists. <a href='/signup'>Try Again</a>"});
+            res.status(404).json({error: "User already exists. <a href='/signup'>Try Again</a>"});
+            console.log(error)
+
         } else {
             // Insert the new user into the database
-            connection.query("INSERT INTO testusers (user_name, user_email, user_password, phone_number) VALUES (?, ?, ?, ?)", [username, useremail, hash, phonenumber], function (error, results, fields) {
-                if (error) {
-                    res.json({ error: "Error occurred while signing up. <a href='/signup'>Try Again</a>" });
+            connection.query("INSERT INTO testusers (user_name, user_email, user_password, phone_number) VALUES (?, ?, ?, ?)", [username, useremail, hash, phonenumber], function (err, results, fields) {
+                if (err) {
+                    res.status(404).json({ error: "Error occurred while signing up. <a href='/signup'>Try Again</a>" });
+                    console.log(err)
                 } else {
                     // res.redirect("/created");
                     // console.log(results[0])

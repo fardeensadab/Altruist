@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./SignUp_NGO.css";
 import { FaRegUser, FaLock, FaEnvelope } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-export const SignUp_NGO = ({ onSwitch }) => {
+export const SignUp_NGO = ({login}) => {
 
   const [username, setUsername] = useState("");
   const [useremail, setUseremail] = useState("");
@@ -10,6 +11,8 @@ export const SignUp_NGO = ({ onSwitch }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phonenumber, setPhoneNumber] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
+
+  const navigate = useNavigate()
 
   const HandleRegSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +36,8 @@ export const SignUp_NGO = ({ onSwitch }) => {
       if (response.ok) {
         const responseData = await response.json();
         setResponseMessage('Signup successful: ' + JSON.stringify(responseData));
+        login(responseData.user);
+        navigate("/")
       } else {
         setResponseMessage('Signup failed. Status: ' + response.status);
       }
@@ -45,6 +50,11 @@ export const SignUp_NGO = ({ onSwitch }) => {
 
   return (
     <div className="wrapper">
+      {
+        responseMessage
+        &&
+        <h1>{responseMessage}</h1>
+      }
       <form onSubmit={(e) => HandleRegSubmit(e)}>
         <h1>NGO Sign Up</h1>
         <div className="input-box">
@@ -83,7 +93,7 @@ export const SignUp_NGO = ({ onSwitch }) => {
         <div className="register-link">
           <p>
             Already have an account?{" "}
-            <button onClick={onSwitch} style={{ marginLeft: "5px" }}>
+            <button onClick={()=>navigate("/login")} style={{ marginLeft: "5px" }}>
               Login
             </button>
           </p>

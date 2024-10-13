@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import { FaRegUser, FaLock } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export const LoginForm = ({ onSwitch }) => {
+export const LoginForm = ({login}) => {
   const [useremail, setUseremail] = useState("");
   const [password, setPassword] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +26,11 @@ export const LoginForm = ({ onSwitch }) => {
 
       if (response.ok) {
         const responseData = await response.json();
-        setResponseMessage('Signup successful: ' + JSON.stringify(responseData));
+        setResponseMessage('Login successful: ' + JSON.stringify(responseData));
+        login(responseData.user, rememberMe);
+        navigate("/")
       } else {
-        setResponseMessage('Signup failed. Status: ' + response.status);
+        setResponseMessage('Login failed. Status: ' + response.status);
       }
     } catch (error) {
       setResponseMessage('An error occurred: ' + error.message);
@@ -54,7 +58,7 @@ export const LoginForm = ({ onSwitch }) => {
         </div>
         <div className="remember-forgot">
           <label>
-            <input type="checkbox" /> Remember me
+            <input type="checkbox" checked={rememberMe} onChange={()=>setRememberMe(!rememberMe)}/> Remember me
           </label>
           <a href="#">Forgot password?</a>
         </div>
@@ -63,7 +67,7 @@ export const LoginForm = ({ onSwitch }) => {
           <div>
             Don't Have an Account?{" "}
             <div className="button-container">
-              <button onClick={onSwitch} style={{ marginRight: "10px" }}>
+              <button onClick={()=>navigate("/register")} style={{ marginRight: "10px" }}>
                 NGO Sign up
               </button>
               <button onClick={() => alert("Another action")}>

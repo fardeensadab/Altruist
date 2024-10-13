@@ -3,7 +3,7 @@ import { FaSearch } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import './TopBar.css';
 
-export function TopBar() {
+export function TopBar({user, logout}) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [seeMoreOpen, setSeeMoreOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -33,7 +33,8 @@ export function TopBar() {
                 <Link to="/faq">FAQ</Link>
                 <a href="/contact">Contact Us</a>
                 <a href="/donate">Donate</a>
-                <a href="/login">Login</a>
+                {!user && <Link to="/login">Login</Link>}
+                {user && <a onClick={logout}>Log Out</a>}
                 <div className="dropdown">
                     <a href="#" onClick={toggleSeeMore}>See More</a>
                     {seeMoreOpen && (
