@@ -1,0 +1,60 @@
+{
+    "donationPosts": [
+      {
+        "title": "Help Build a School in Rural Kenya",
+        "body": "We are raising funds to build a school in a remote village in Kenya. Your donations will go towards purchasing materials, hiring local workers, and ensuring education for hundreds of children.",
+        "goal_amount": 50000,
+        "current_amount": 12000,
+        "deadline": "2024-12-31",
+        "contact_info": {
+          "email": "kenya_school_fundraiser@example.com",
+          "phone": "+254700123456"
+        }
+      },
+      {
+        "title": "Support Medical Treatment for Sarah",
+        "body": "Sarah has been diagnosed with a rare medical condition, and her family is struggling to afford the necessary treatments. Your donation can help cover the cost of surgeries, therapies, and ongoing medical care.",
+        "goal_amount": 100000,
+        "current_amount": 45000,
+        "deadline": "2024-11-15",
+        "contact_info": {
+          "email": "support_sarah_health@example.com",
+          "phone": "+1234567890"
+        }
+      },
+      {
+        "title": "Emergency Relief for Flood Victims in Bangladesh",
+        "body": "Thousands of families have been displaced by severe floods in Bangladesh. We are raising funds to provide food, shelter, clean water, and medical supplies for the victims.",
+        "goal_amount": 30000,
+        "current_amount": 18000,
+        "deadline": "2024-10-31",
+        "contact_info": {
+          "email": "flood_relief_bangladesh@example.com",
+          "phone": "+8801712345678"
+        }
+      },
+      {
+        "title": "Save the Rainforest: Conservation Efforts in the Amazon",
+        "body": "Deforestation is threatening the Amazon rainforest. Your contributions will support reforestation projects, wildlife conservation, and efforts to protect indigenous communities who depend on the forest.",
+        "goal_amount": 75000,
+        "current_amount": 30000,
+        "deadline": "2024-12-01",
+        "contact_info": {
+          "email": "save_amazon_forest@example.com",
+          "phone": "+5571998765432"
+        }
+      },
+      {
+        "title": "Fund Scholarships for Underprivileged Students",
+        "body": "Education is the key to a better future. Help us provide scholarships for students from low-income families so they can attend college and achieve their dreams.",
+        "goal_amount": 20000,
+        "current_amount": 7000,
+        "deadline": "2024-11-30",
+        "contact_info": {
+          "email": "scholarship_fund@example.com",
+          "phone": "+14155552671"
+        }
+      }
+    ]
+  }
+  

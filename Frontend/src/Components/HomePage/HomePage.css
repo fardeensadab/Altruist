@@ -1,0 +1,9 @@
+.posts-container {
+    margin: 0 auto;
+    padding: 5px;
+    max-width: 800px;
+    background-color: antiquewhite;
+}
+.posts-container ul{
+    list-style-type: none;
+}

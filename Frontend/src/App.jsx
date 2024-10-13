@@ -3,6 +3,7 @@ import { TopBar } from "./Components/TopBar";
 import LoginAndRegForms from "./Components/LoginAndRegForms";
 import EmailVerifier from "./Components/EmailVerifier";
 
+import DonationRequests from "./Components/HomePage/HomePage";
 import AboutUs from "./Components/Miscellaneous/AboutUs";
 import FAQ from "./Components/Miscellaneous/FAQ";
 
@@ -27,6 +28,9 @@ function App() {
         <li>
           <Link to="/faq"> FAQ </Link>
         </li>
+        <li>
+          <Link to="/home"> Home Page </Link>
+        </li>
       </ol>
     </div>
   }
@@ -40,6 +44,7 @@ function App() {
         <Route path="/verify-registration" element={<EmailVerifier />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/home" element={<DonationRequests />} />
       </Routes>
     </BrowserRouter>
 
