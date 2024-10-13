@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TopBar } from "./Components/TopBar";
 import LoginAndRegForms from "./Components/LoginAndRegForms";
-import EmailVerifier from "./Components/EmailVerifier";
+import EmailVerifier from "./Components/EmailVerifier/EmailVerifier";
 
 import DonationRequests from "./Components/HomePage/HomePage";
 import AboutUs from "./Components/Miscellaneous/AboutUs";
