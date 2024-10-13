@@ -3,22 +3,21 @@ const router = express.Router()
 const bodyParser = require("body-parser");
 const encoder = bodyParser.urlencoded({ extended: true });
 const bcrypt = require('bcrypt');
-const connection= require('../DataBaseConnection');
+const connection = require('../DataBaseConnection');
 // login
-router.post("/", encoder, async function (req, res) {
+router.post("/login", encoder, async function (req, res) {
     var useremail = req.body.useremail;
     var password = req.body.password;
 
-    console.log("POST request received at /");
+    console.log("POST request received at /user/login");
     console.log("useremail:", req.body.useremail);
     // console.log("Password:", req.body.password);
 
     connection.query("select * from altruist.testusers where user_email = ?", [useremail], async function (error, results, fields) {
         if (results.length > 0) {
             const passwordMatch = await bcrypt.compare(password, results[0].user_password);
-            
+
             if (passwordMatch) {
-                console.log(results[0])
                 res.status(200).json({
                     user: results[0].user_name,
                 })
@@ -42,14 +41,15 @@ router.post("/signup", encoder, async function (req, res) {
     var username = req.body.username;
     var useremail = req.body.useremail;
     var password = req.body.password;
+    var phonenumber = req.body.phonenumber;
     console.log(req.body)
-    
+
     let hash;
-    try{
+    try {
         hash = await bcrypt.hash(password, 11);
     }
-    catch(err){
-        res.status(400).send("Nothing sent");
+    catch (err) {
+        res.status(400).json({ error: "Nothing sent" });
         return
     }
 
@@ -58,12 +58,12 @@ router.post("/signup", encoder, async function (req, res) {
     connection.query("SELECT * FROM testusers WHERE user_email = ?", [useremail], function (error, results, fields) {
         if (results.length > 0) {
             // User already exists
-            res.send("User already exists. <a href='/signup'>Try Again</a>");
+            res.json({error: "User already exists. <a href='/signup'>Try Again</a>"});
         } else {
             // Insert the new user into the database
-            connection.query("INSERT INTO testusers (user_name, user_email, user_password) VALUES (?, ?, ?)", [username, useremail, hash], function (error, results, fields) {
+            connection.query("INSERT INTO testusers (user_name, user_email, user_password, phone_number) VALUES (?, ?, ?, ?)", [username, useremail, hash, phonenumber], function (error, results, fields) {
                 if (error) {
-                    res.send("Error occurred while signing up. <a href='/signup'>Try Again</a>");
+                    res.json({ error: "Error occurred while signing up. <a href='/signup'>Try Again</a>" });
                 } else {
                     // res.redirect("/created");
                     // console.log(results[0])

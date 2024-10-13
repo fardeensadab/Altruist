@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter, Link } from "rea
 
 function App() {
 
+  const [user, setUser] = useState("");
+
   const Home = () => {
     return <div class="container">
       <h1> The following Routes are available currently:</h1>
@@ -37,7 +39,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <TopBar />
+      <TopBar username={user} setUser={setUser}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginAndRegForms />} />

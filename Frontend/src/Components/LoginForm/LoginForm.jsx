@@ -4,16 +4,52 @@ import { FaRegUser, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export const LoginForm = ({ onSwitch }) => {
+  const [useremail, setUseremail] = useState("");
+  const [password, setPassword] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = { useremail, password };
+
+    try {
+      const response = await fetch('http://localhost:4500/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        setResponseMessage('Signup successful: ' + JSON.stringify(responseData));
+      } else {
+        setResponseMessage('Signup failed. Status: ' + response.status);
+      }
+    } catch (error) {
+      setResponseMessage('An error occurred: ' + error.message);
+    }
+  }
+
+
   return (
+
     <div className="wrapper">
-      <form action="">
+      {
+        responseMessage
+        &&
+        <h1>{responseMessage}</h1>
+      }
+      <form onSubmit={(e) => { HandleSubmit(e) }}>
         <h1>Login</h1>
         <div className="input-box">
-          <input type="text" placeholder="Username" required />
+          <input type="email" placeholder="email@example.com" required value={useremail} onInput={(e) => setUseremail(e.target.value)} />
           <FaRegUser className="icon" />
         </div>
         <div className="input-box">
-          <input type="password" placeholder="Password" required />
+          <input type="password" placeholder="Password" required value={password} onInput={(e) => setPassword(e.target.value)} />
           <FaLock className="icon" />
         </div>
         <div className="remember-forgot">
