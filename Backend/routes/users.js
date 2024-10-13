@@ -16,15 +16,22 @@ router.post("/", encoder, async function (req, res) {
     connection.query("select * from altruist.testusers where user_email = ?", [useremail], async function (error, results, fields) {
         if (results.length > 0) {
             const passwordMatch = await bcrypt.compare(password, results[0].user_password);
-            // console.log(passwordMatch)
+            
             if (passwordMatch) {
-                res.redirect("/welcome");
+                console.log(results[0])
+                res.status(200).json({
+                    user: results[0].user_name,
+                })
             }
             else {
-                res.redirect("/");
+                res.status(404).json({
+                    user: null,
+                })
             }
         } else {
-            res.redirect("/");
+            res.status(404).json({
+                user: null,
+            })
         }
         //res.end();
     })
@@ -35,7 +42,17 @@ router.post("/signup", encoder, async function (req, res) {
     var username = req.body.username;
     var useremail = req.body.useremail;
     var password = req.body.password;
-    const hash = await bcrypt.hash(password, 11);
+    console.log(req.body)
+    
+    let hash;
+    try{
+        hash = await bcrypt.hash(password, 11);
+    }
+    catch(err){
+        res.status(400).send("Nothing sent");
+        return
+    }
+
 
     // Check if the user already exists
     connection.query("SELECT * FROM testusers WHERE user_email = ?", [useremail], function (error, results, fields) {
@@ -48,7 +65,11 @@ router.post("/signup", encoder, async function (req, res) {
                 if (error) {
                     res.send("Error occurred while signing up. <a href='/signup'>Try Again</a>");
                 } else {
-                    res.redirect("/created");
+                    // res.redirect("/created");
+                    // console.log(results[0])
+                    res.status(200).json({
+                        user: username,
+                    })
                 }
             });
         }
