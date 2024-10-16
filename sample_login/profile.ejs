@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Clear Aid</title>
+    <link rel="stylesheet" href="assets/welcome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <h1>Clear Aid</h1>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="/welcome">Dashboard</a></li>
+            <li><a href="/funds">Funds</a></li>
+            <li><a href="/donations">Donations</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2>User Profile</h2>
+        <p>Here you can view and edit your profile details.</p>
+        <form action="/update-profile" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<%= username %>" required>
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+</body>
+
+</html>

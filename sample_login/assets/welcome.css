@@ -7,39 +7,117 @@
 }
 
 body {
-    background: linear-gradient(135deg, #00BCD4, #009688);
-    height: 100vh;
+    /* Layer the gradient over the background image */
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("flood.jpg") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     color: #fff;
     text-align: center;
 }
 
-h1 {
+/* Navigation Bar Styles */
+.navbar {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand h1 {
+    font-size: 24px;
+    color: #fff;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+    color: #FFD700;
+}
+
+/* Main Container */
+.container {
+    padding: 100px 20px 20px 20px; /* Top padding to avoid navbar overlap */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Welcome Section */
+.welcome-section {
+    margin-bottom: 40px;
+}
+
+.welcome-section h1 {
     font-size: 48px;
     font-weight: bold;
     letter-spacing: 2px;
     text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
     animation: fadeIn 2s ease-in-out;
-    margin-bottom: 20px; /* Added margin for spacing */
+    margin-bottom: 20px;
 }
 
+.welcome-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Image container styles */
+.image-container {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border: 2px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 0 auto 20px auto;
+    border-radius: 10%;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+/* Form Styles */
 form {
     margin-top: 20px;
-    width: 100%; /* Make form take full width */
-    max-width: 400px; /* Limit max width for better alignment */
-    padding: 20px; /* Add padding */
-    background-color: rgba(255, 255, 255, 0.1); /* Background for the form */
-    border-radius: 8px; /* Rounded corners for the form */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Add shadow */
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
 }
 
 label {
     font-size: 18px;
     margin-bottom: 10px;
     display: block;
+    cursor: pointer;
 }
 
 input[type="file"] {
@@ -55,6 +133,11 @@ input[type="file"] {
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.custom-file-upload i {
+    margin-right: 8px;
 }
 
 .custom-file-upload:hover {
@@ -70,12 +153,107 @@ button {
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 16px;
 }
 
 button:hover {
     background-color: #00796B;
 }
 
+/* Dashboard Section */
+.dashboard-section {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-section h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #FFD700;
+}
+
+.card-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 50%; /* This should be dynamically set based on funding progress */
+}
+
+/* Recent Donations List */
+.card-content ul {
+    list-style: none;
+}
+
+.card-content ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #fff;
+}
+
+.card-content ul li:last-child {
+    border-bottom: none;
+}
+
+/* Transaction History Table */
+.card-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.card-content th,
+.card-content td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #fff;
+}
+
+.card-content th {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-content tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animations */
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -88,37 +266,42 @@ button:hover {
 }
 
 /* Responsive Design */
+@media (max-width: 900px) {
+    .navbar-menu {
+        display: none; /* Hide menu on smaller screens */
+    }
+
+    /* You can add a hamburger menu here for better UX */
+}
+
 @media (max-width: 600px) {
-    h1 {
+    .welcome-section h1 {
         font-size: 36px;
     }
 
+    .welcome-section h2 {
+        font-size: 24px;
+    }
+
     form {
-        width: 90%; /* Adjust form width for smaller screens */
+        width: 90%;
     }
-    
+
     button {
-        width: 100%; /* Make button full-width on small screens */
+        width: 100%;
     }
-}
 
-/* Add this CSS to welcome.css */
+    .dashboard-section h2 {
+        font-size: 28px;
+    }
 
-/* Image container styles */
-.image-container {
-    width: 200px; /* Set the desired width */
-    height: 200px; /* Set the desired height */
-    overflow: hidden; /* Hide overflow */
-    border: 2px solid #fff; /* Optional: border around the box */
-    display: flex; /* Center the image */
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically */
-    background-color: rgba(255, 255, 255, 0.1); /* Optional: background color */
-    margin-bottom: 20px; /* Space between the image and the form */
-}
+    .card-content h3 {
+        font-size: 18px;
+    }
 
-.image-container img {
-    max-width: 100%; /* Ensure the image fits within the container */
-    max-height: 100%; /* Ensure the image fits within the container */
-    object-fit: cover; /* Crop the image to cover the box */
+    .card-content p,
+    .card-content table,
+    .card-content ul {
+        font-size: 16px;
+    }
 }

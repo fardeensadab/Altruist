@@ -159,3 +159,49 @@ app.get("/profile-image/:username", function (req, res) {
         }
     );
 });
+
+
+////////////////////////////////////
+
+// Funds page
+// Funds page
+app.get("/funds", function (req, res) {
+    const username = req.session.username;
+    if (!username) {
+        return res.redirect("/"); // Redirect to login if not authenticated
+    }
+    res.render("funds", { username: username });
+});
+
+
+// Donations page
+app.get("/donations", function (req, res) {
+    const username = req.session.username;
+    if (!username) {
+        return res.redirect("/");
+    }
+    res.render("donations", { username: username });
+});
+
+// Profile page
+app.get("/profile", function (req, res) {
+    const username = req.session.username;
+    if (!username) {
+        return res.redirect("/");
+    }
+    res.render("profile", { username: username });
+});
+
+
+////////////////
+
+// Logout handler
+app.get("/logout", function (req, res) {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Logout error:", err);
+            return res.redirect("/"); // Redirect to login on error
+        }
+        res.redirect("/"); // Redirect to login after successful logout
+    });
+});
