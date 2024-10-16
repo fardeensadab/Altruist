@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useSearchParams, useNavigate, Navigate } from "react-router-dom";
 import "./EmailVerifier.css";
 
-export default function EmailVerifier({ email }) {
+export default function EmailVerifier({ login }) {
     const [verificationCode, setVerificationCode] = useState(Array(6).fill(""));
+    let [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const email = searchParams.get("email");;
     const inputsRef = useRef([]);
 
     const handleInputChange = (e, index) => {
@@ -29,13 +33,41 @@ export default function EmailVerifier({ email }) {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Convert the array of digits into a single string
         const code = verificationCode.join("");
         console.log("Verification Code Submitted:", code);
         // verification logic here
+        const formData = { useremail: email, code };
+
+        try {
+            const response = await fetch('http://localhost:4500/user/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                // setResponseMessage('Signup successful: ' + JSON.stringify(responseData));
+                login(responseData.user);
+                navigate("/")
+            } else {
+                // setResponseMessage('Signup failed. Status: ' + response.status);
+            }
+        } catch (error) {
+            // setResponseMessage('An error occurred: ' + error.message);
+        }
+        
+
     };
+
+    if (!email) {
+        return <Navigate to="/signup" />
+    }
 
     return (
         <div className="container" id="emailVerifierContainer">

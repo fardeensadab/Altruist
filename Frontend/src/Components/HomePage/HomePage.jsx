@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 
-function DonationRequests() {
+function DonationRequests({user}) {
   const [donationPosts, setDonationPosts] = useState([]);
   const [enlargedPostIndex, setEnlargedPostIndex] = useState(null);
   useEffect(() => {
@@ -27,6 +27,7 @@ function DonationRequests() {
 
   return (
     <div className="posts-container">
+      {user && <h3>Welcome, {user}</h3>}
       <h1>Donation Requests</h1>
       <ul>
         {donationPosts.map((post, index) => (

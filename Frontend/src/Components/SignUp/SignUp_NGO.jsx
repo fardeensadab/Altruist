@@ -3,7 +3,7 @@ import "./SignUp_NGO.css";
 import { FaRegUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-export const SignUp_NGO = ({login}) => {
+export const SignUp_NGO = () => {
 
   const [username, setUsername] = useState("");
   const [useremail, setUseremail] = useState("");
@@ -36,8 +36,7 @@ export const SignUp_NGO = ({login}) => {
       if (response.ok) {
         const responseData = await response.json();
         setResponseMessage('Signup successful: ' + JSON.stringify(responseData));
-        login(responseData.user);
-        navigate("/")
+        navigate("/verify-registration?email=" + encodeURIComponent(useremail))
       } else {
         setResponseMessage('Signup failed. Status: ' + response.status);
       }

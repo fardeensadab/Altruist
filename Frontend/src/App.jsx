@@ -33,10 +33,10 @@ function App() {
     <BrowserRouter>
       <TopBar user={user} logout={logout}/>
       <Routes>
-        <Route path="/" element={<DonationRequests />} />
+        <Route path="/" element={<DonationRequests user={user}/>} />
         <Route path="/login" element={<LoginForm login={login}/>} />
-        <Route path="/register" element={<SignUp_NGO login={login}/>} />
-        <Route path="/verify-registration" element={<EmailVerifier />} />
+        <Route path="/register" element={<SignUp_NGO />} />
+        <Route path="/verify-registration" element={<EmailVerifier login={login}/>} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/default" element={<Home user={user} />} />
