@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const encoder = bodyParser.urlencoded({ extended: true });
 const bcrypt = require('bcrypt');
 const connection = require('../DataBaseConnection');
+
 // login
 router.post("/login", encoder, async function (req, res) {
     var useremail = req.body.useremail;
@@ -11,7 +12,6 @@ router.post("/login", encoder, async function (req, res) {
 
     console.log("POST request received at /user/login");
     console.log("useremail:", req.body.useremail);
-    // console.log("Password:", req.body.password);
 
     connection.query("select * from altruist.testusers where user_email = ?", [useremail], async function (error, results, fields) {
         if (results.length > 0) {

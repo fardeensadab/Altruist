@@ -14,7 +14,7 @@ const userRouter = require('./routes/users')
 app.use("/user/", userRouter);
 
 
-app.use("/assets", express.static("assets"));
+// app.use("/assets", express.static("assets"));
 
 
 
