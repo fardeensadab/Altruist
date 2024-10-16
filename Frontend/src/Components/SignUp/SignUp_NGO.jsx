@@ -49,7 +49,7 @@ export const SignUp_NGO = ({login}) => {
   }
 
   return (
-    <div className="wrapper">
+    <div className="signup-wrapper">
       {
         responseMessage
         &&

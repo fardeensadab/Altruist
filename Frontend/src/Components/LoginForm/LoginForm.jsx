@@ -40,7 +40,7 @@ export const LoginForm = ({login}) => {
 
   return (
 
-    <div className="wrapper">
+    <div className="login-wrapper">
       {
         responseMessage
         &&
