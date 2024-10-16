@@ -11,20 +11,20 @@
     border-radius: 10px; 
 }
 
-.email-verifier {
+#emailVerifierContainer .email-verifier {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10px; 
 }
 
-.input-container {
+#emailVerifierContainer .input-container {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
 }
 
-.verification-input {
+#emailVerifierContainer .verification-input {
     width: 40px; 
     height: 40px; 
     font-size: 24px; 
@@ -34,12 +34,12 @@
     border-radius: 5px;
 }
 
-.verification-input:focus {
+#emailVerifierContainer .verification-input:focus {
     border-color: #007bff;
     outline: none;
 }
 
-.button {
+#emailVerifierContainer .button {
     width: 25%;
     height: 45px;
     background-color: white;
@@ -53,7 +53,7 @@
     font-weight: 700;
 }
 
-.button:hover {
+#emailVerifierContainer .button:hover {
     background-color: #393939; 
     color: #ffffff;
 }

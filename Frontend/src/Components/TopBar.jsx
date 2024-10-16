@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { FaSearch } from 'react-icons/fa';
-import { Link } from "react-router-dom";
-import './TopBar.css';
+import { FaSearch } from "react-icons/fa";
+import { MdMenu, MdClose } from "react-icons/md";
+import { PiHandCoinsDuotone } from "react-icons/pi";
+import { Link, useNavigate } from "react-router-dom";
+import "./TopBar.css";
 
-export function TopBar({user, logout}) {
+export function TopBar({ user, logout }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [seeMoreOpen, setSeeMoreOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -22,11 +25,9 @@ export function TopBar({user, logout}) {
 
     return (
         <nav>
-            <h1>ClearAid</h1>
+            <h1 onClick={()=>{navigate("/")}}><PiHandCoinsDuotone /> ClearAid</h1>
             <div className="hamburger" onClick={toggleMenu}>
-                <div className="bar"></div>
-                <div className="bar"></div>
-                <div className="bar"></div>
+                <MdMenu />
             </div>
             <div className={menuOpen ? 'menu show' : 'menu'}>
                 <Link to="/about">About Us</Link>
@@ -35,7 +36,7 @@ export function TopBar({user, logout}) {
                 <a href="/donate">Donate</a>
                 {!user && <Link to="/login">Login</Link>}
                 {user && <a onClick={logout}>Log Out</a>}
-                <div className="dropdown">
+                {/* <div className="dropdown">
                     <a href="#" onClick={toggleSeeMore}>See More</a>
                     {seeMoreOpen && (
                         <ul className="dropdown-menu">
@@ -44,12 +45,14 @@ export function TopBar({user, logout}) {
                             <li><a href="/blog">Blog</a></li>
                         </ul>
                     )}
-                </div>
+                </div> */}
             </div>
-            <button className={`search-button ${searchOpen ? 'active' : ''}`} onClick={toggleSearch}>
-                {searchOpen ? 'Close' :  <FaSearch /> }
-            </button>
-            {searchOpen && <input type="text" className="search-input" placeholder="Search..." />}
+            <div>
+                <button className={`search-button ${searchOpen ? 'active' : ''}`} onClick={toggleSearch}>
+                    {searchOpen ? <MdClose /> : <FaSearch />}
+                </button>
+                {searchOpen && <input type="text" className="search-input" placeholder="Search..." />}
+            </div>
         </nav>
     );
 }
