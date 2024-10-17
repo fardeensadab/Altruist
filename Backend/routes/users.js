@@ -43,7 +43,7 @@ router.post("/signup", encoder, async function (req, res) {
     var useremail = req.body.useremail;
     var password = req.body.password;
     var phonenumber = req.body.phonenumber;
-    console.log(req.body)
+    console.log("--", req.body)
 
     let hash;
     try {
@@ -51,7 +51,7 @@ router.post("/signup", encoder, async function (req, res) {
     }
     catch (err) {
         res.status(400).json({ error: "Nothing sent" });
-        console.log(err)
+        console.log("--", err)
 
         return
     }
@@ -62,7 +62,7 @@ router.post("/signup", encoder, async function (req, res) {
         if (results.length > 0) {
             // User already exists
             res.status(400).json({ error: "User already exists. Try Again" });
-            console.log(error)
+            console.log("User already exists. Try Again" )
 
         } else {
             // Insert the new user into the database
